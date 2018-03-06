@@ -2,26 +2,23 @@ package telvape.mobilau.view;
 
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.graphics.drawable.Animatable2Compat;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
-import telvape.mobilau.R;
 import telvape.mobilau.BaseActivity;
-import telvape.mobilau.adapter.JobAdapter;
-import telvape.mobilau.model.Job;
+import telvape.mobilau.R;
+import telvape.mobilau.adapter.AllFlavorAdapter;
+import telvape.mobilau.custom.IngredientItemDecoration;
+import telvape.mobilau.model.Flavor;
 import telvape.mobilau.presenter.MainPresenter;
 import telvape.mobilau.presenter.MainPresenterImpl;
 
 public class MainActivity extends BaseActivity implements MainView {
-
-    private static final String TAG = "MainActivity";
 
     @BindView(R.id.floatingActionButton)
     FloatingActionButton floatingActionButton;
@@ -31,6 +28,10 @@ public class MainActivity extends BaseActivity implements MainView {
 
     MainPresenter mainPresenter;
 
+    List<Flavor> recipeFlavors;
+
+    BottomSheetView bottomSheetView;
+
     @Override
     public int getContentLayout() {
         return R.layout.activity_main;
@@ -39,35 +40,40 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void initViewComponents() {
         mainPresenter = new MainPresenterImpl(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mainPresenter.fetchJobs();
+        mainPresenter.fetchIngredients();
+
+        recipeFlavors = new ArrayList<>();
+        bottomSheetView = new BottomSheetImpl(this,recipeFlavors);
     }
 
-    @OnClick(R.id.floatingActionButton)
-    public void startMix(){
+    @Override
+    public void displayFlavors(List<Flavor> flavors) {
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        int spacinginPixels = getResources().getDimensionPixelSize(R.dimen.ingredient_spacing);
+        recyclerView.addItemDecoration(new IngredientItemDecoration(spacinginPixels));
+        recyclerView.setAdapter(new AllFlavorAdapter(this, flavors));
+    }
 
+    @Override
+    public void addFlavor(Flavor flavor) {
+        animateMix();
+        recipeFlavors.add(flavor);
+        recalculatePercentages(recipeFlavors);
+        bottomSheetView.showBottomSheet();
+    }
+
+    private void animateMix() {
         AnimatedVectorDrawableCompat animatedVector = AnimatedVectorDrawableCompat.create(this, R.drawable.avd_anim);
         floatingActionButton.setImageDrawable(animatedVector);
 
         Drawable d = floatingActionButton.getDrawable();
-        ((AnimatedVectorDrawableCompat)d).registerAnimationCallback(new Animatable2Compat.AnimationCallback() {
-            @Override
-            public void onAnimationStart(Drawable drawable) {
-                super.onAnimationStart(drawable);
-                Log.d(TAG, "onAnimationStart: animation started");
-            }
-
-            @Override
-            public void onAnimationEnd(Drawable drawable) {
-                super.onAnimationEnd(drawable);
-                Log.d(TAG, "onAnimationEnd: animation ended");
-            }
-        });
-        ((AnimatedVectorDrawableCompat)d ).start();
+        ((AnimatedVectorDrawableCompat) d).start();
     }
 
-    @Override
-    public void displayJobs(List<Job> jobs) {
-        recyclerView.setAdapter(new JobAdapter(jobs));
+    void recalculatePercentages(List<Flavor> flavors){
+        int size = flavors.size();
+        for (int i = 0; i < size; i++) {
+            flavors.get(i).setPercentage(100/size);
+        }
     }
 }

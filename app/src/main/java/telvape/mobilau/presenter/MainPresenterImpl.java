@@ -1,41 +1,46 @@
 package telvape.mobilau.presenter;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import telvape.mobilau.model.Job;
-import telvape.mobilau.model.Jobs;
-import telvape.mobilau.network.JobFetchInterface;
+import telvape.mobilau.model.Flavor;
 import telvape.mobilau.view.MainView;
 
 /**
+ *
  * Created by sbabu on 2/27/18.
  */
 
 public class MainPresenterImpl implements MainPresenter {
 
-    MainView mainView;
+    private MainView mainView;
 
     public MainPresenterImpl(MainView mainView) {
         this.mainView = mainView;
     }
 
     @Override
-    public void fetchJobs() {
-        JobFetchInterface jobFetchInterface = JobFetchInterface.JobFetchApi.jobFetchApi();
-        Call<Jobs> jobs = jobFetchInterface.getJobs();
-        jobs.enqueue(new Callback<Jobs>() {
-            @Override
-            public void onResponse(Call<Jobs> call, Response<Jobs> response) {
-                mainView.displayJobs(response.body().getCurrent());
-            }
+    public void fetchIngredients() {
+        List<Flavor> ingredients = new ArrayList<>();
+        ingredients.add(new Flavor("Spearmint"));
+        ingredients.add(new Flavor("Fruit"));
+        ingredients.add(new Flavor("Cream"));
+        ingredients.add(new Flavor("Tears"));
+        ingredients.add(new Flavor("Spearmint"));
+        ingredients.add(new Flavor("Fruit"));
+        ingredients.add(new Flavor("Cream"));
+        ingredients.add(new Flavor("Tears"));
+        ingredients.add(new Flavor("Spearmint"));
+        ingredients.add(new Flavor("Fruit"));
+        ingredients.add(new Flavor("Cream"));
+        ingredients.add(new Flavor("Tears"));
+        ingredients.add(new Flavor("Spearmint"));
+        ingredients.add(new Flavor("Fruit"));
+        ingredients.add(new Flavor("Cream"));
+        ingredients.add(new Flavor("Tears"));
 
-            @Override
-            public void onFailure(Call<Jobs> call, Throwable t) {
-                mainView.displayJobs(new ArrayList<Job>());
-            }
-        });
+        mainView.displayFlavors(ingredients);
     }
+
+
 }

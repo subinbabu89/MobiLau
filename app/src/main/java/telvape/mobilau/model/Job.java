@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ *
  * Created by sbabu on 2/27/18.
  */
 
@@ -13,7 +14,7 @@ public class Job implements Parcelable{
     private String started_by;
     private int time_to_complete;
 
-    protected Job(Parcel in) {
+    private Job(Parcel in) {
         id = in.readInt();
         job_name = in.readString();
         started_by = in.readString();

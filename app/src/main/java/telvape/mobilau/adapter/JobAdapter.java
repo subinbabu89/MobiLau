@@ -22,6 +22,8 @@ import telvape.mobilau.view.MainActivity;
 import telvape.mobilau.view.SecondActivity;
 
 /**
+ * Adapter for the list of all running jobs to display
+ *
  * Created by sbabu on 2/27/18.
  */
 
@@ -70,7 +72,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder>{
         }
 
         @OnClick(R.id.cv_parent)
-        public void animateTransition(CardView card_view){
+        void animateTransition(CardView card_view){
             Intent intent = new Intent(context, SecondActivity.class);
             intent.putExtra("key",holderJob);
 
@@ -83,7 +85,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder>{
             ActivityCompat.startActivity(context, intent, options.toBundle());
         }
 
-        public void bind(Job job){
+        void bind(Job job){
             holderJob = job;
 
             id.setText(String.valueOf(job.getId()));
