@@ -1,4 +1,4 @@
-package telvape.mobilau.view;
+package telvape.mobilau.view.juice.custom;
 
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
@@ -15,10 +15,12 @@ import telvape.mobilau.R;
 import telvape.mobilau.adapter.AllFlavorAdapter;
 import telvape.mobilau.custom.IngredientItemDecoration;
 import telvape.mobilau.model.Flavor;
-import telvape.mobilau.presenter.MainPresenter;
-import telvape.mobilau.presenter.MainPresenterImpl;
+import telvape.mobilau.presenter.CustomJuicePresenter;
+import telvape.mobilau.presenter.CustomJuicePresenterImpl;
+import telvape.mobilau.view.juice.custom.bottomsheet.BottomSheetImpl;
+import telvape.mobilau.view.juice.custom.bottomsheet.BottomSheetView;
 
-public class MainActivity extends BaseActivity implements MainView {
+public class CustomJuiceActivity extends BaseActivity implements CustomJuiceView {
 
     @BindView(R.id.floatingActionButton)
     FloatingActionButton floatingActionButton;
@@ -26,7 +28,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @BindView(R.id.recyclerview_jobs)
     RecyclerView recyclerView;
 
-    MainPresenter mainPresenter;
+    CustomJuicePresenter customJuicePresenter;
 
     List<Flavor> recipeFlavors;
 
@@ -39,8 +41,8 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void initViewComponents() {
-        mainPresenter = new MainPresenterImpl(this);
-        mainPresenter.fetchIngredients();
+        customJuicePresenter = new CustomJuicePresenterImpl(this);
+        customJuicePresenter.fetchIngredients();
 
         recipeFlavors = new ArrayList<>();
         bottomSheetView = new BottomSheetImpl(this,recipeFlavors);

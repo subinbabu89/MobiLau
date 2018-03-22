@@ -1,4 +1,4 @@
-package telvape.mobilau.view;
+package telvape.mobilau.view.juice.custom.bottomsheet;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -20,6 +20,12 @@ import java.util.List;
 import telvape.mobilau.R;
 import telvape.mobilau.custom.ColorTemplate;
 import telvape.mobilau.model.Flavor;
+import telvape.mobilau.view.juice.custom.CustomJuiceActivity;
+import telvape.mobilau.view.juice.custom.fabsheet.FabSheetImpl;
+import telvape.mobilau.view.juice.custom.fabsheet.FabSheetView;
+import telvape.mobilau.view.juice.custom.CustomJuiceView;
+import telvape.mobilau.view.juice.custom.MultiSliderImpl;
+import telvape.mobilau.view.juice.custom.MultiSliderView;
 
 /**
  *
@@ -29,7 +35,7 @@ import telvape.mobilau.model.Flavor;
 public class BottomSheetImpl implements BottomSheetView {
     private static final String TAG = "BottomSheetImpl";
 
-    private MainView mainView;
+    private CustomJuiceView customJuiceView;
     private List<Flavor> recipe;
 
     private MultiSliderView multiSliderView;
@@ -39,24 +45,24 @@ public class BottomSheetImpl implements BottomSheetView {
     private PieChart mChart;
     private Typeface tf;
 
-    BottomSheetImpl(MainView mainView, List<Flavor> recipe) {
-        this.mainView = mainView;
+    public BottomSheetImpl(CustomJuiceView customJuiceView, List<Flavor> recipe) {
+        this.customJuiceView = customJuiceView;
         this.recipe = recipe;
-        this.multiSliderView = new MultiSliderImpl(mainView,this, recipe);
+        this.multiSliderView = new MultiSliderImpl(customJuiceView,this, recipe);
 
-        initBottomView(mainView,recipe);
+        initBottomView(customJuiceView,recipe);
         initGraph();
         customizeBottomView();
 
     }
 
-    private void initBottomView(MainView mainView, List<Flavor> recipe){
+    private void initBottomView(CustomJuiceView customJuiceView, List<Flavor> recipe){
 
-        ConstraintLayout llBottomSheet = ((MainActivity)mainView).findViewById(R.id.bottom_sheet);
+        ConstraintLayout llBottomSheet = ((CustomJuiceActivity) customJuiceView).findViewById(R.id.bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
-        fabSheetView = new FabSheetImpl(mainView,recipe);
+        fabSheetView = new FabSheetImpl(customJuiceView,recipe);
     }
 
     private void customizeBottomView(){
@@ -133,7 +139,7 @@ public class BottomSheetImpl implements BottomSheetView {
     private void initGraph(){
         Log.d(TAG, "initGraph: called");
 
-        mChart = ((MainActivity)mainView).findViewById(R.id.chart1);
+        mChart = ((CustomJuiceActivity) customJuiceView).findViewById(R.id.chart1);
 
         mChart.setUsePercentValues(true);
         mChart.getDescription().setEnabled(false);
@@ -141,9 +147,9 @@ public class BottomSheetImpl implements BottomSheetView {
 
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
-        tf = Typeface.createFromAsset(((MainActivity)mainView).getAssets(), "OpenSans-Regular.ttf");
+        tf = Typeface.createFromAsset(((CustomJuiceActivity) customJuiceView).getAssets(), "OpenSans-Regular.ttf");
 
-        mChart.setCenterTextTypeface(Typeface.createFromAsset(((MainActivity)mainView).getAssets(), "OpenSans-Light.ttf"));
+        mChart.setCenterTextTypeface(Typeface.createFromAsset(((CustomJuiceActivity) customJuiceView).getAssets(), "OpenSans-Light.ttf"));
         mChart.setCenterText("Something");
 
         mChart.setExtraOffsets(20.f, 0.f, 20.f, 0.f);

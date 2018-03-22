@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="telvape.mobilau.view.JuiceDetailActivity">
+    tools:context="telvape.mobilau.view.juice.detail.JuiceDetailActivity">
 
     <TextView
         android:id="@+id/txtv_name"
@@ -74,7 +74,7 @@
         tools:layout_editor_absoluteY="245dp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/recyclerview_ingredients"
         android:layout_width="169dp"
         android:layout_height="231dp"
         android:layout_marginStart="8dp"

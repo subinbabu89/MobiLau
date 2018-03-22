@@ -20,7 +20,6 @@ public interface FlavorFetchInterface {
     @GET("flavors")
     Call<List<Flavor>> getFlavors();
 
-
     class FlavorFetchAPI{
         private static FlavorFetchInterface flavorFetchInterface;
 

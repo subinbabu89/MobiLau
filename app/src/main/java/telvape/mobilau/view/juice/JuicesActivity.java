@@ -1,4 +1,4 @@
-package telvape.mobilau.view;
+package telvape.mobilau.view.juice;
 
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,12 +9,12 @@ import java.util.List;
 import butterknife.BindView;
 import telvape.mobilau.BaseActivity;
 import telvape.mobilau.R;
-import telvape.mobilau.adapter.AllFlavorAdapter;
 import telvape.mobilau.adapter.JuicesAdapter;
 import telvape.mobilau.custom.IngredientItemDecoration;
 import telvape.mobilau.model.Juice;
 import telvape.mobilau.presenter.JuicesPresenter;
 import telvape.mobilau.presenter.JuicesPresenterImpl;
+import telvape.mobilau.view.juice.detail.JuiceDetailActivity;
 
 /**
  * Created by sbabu on 3/21/18.

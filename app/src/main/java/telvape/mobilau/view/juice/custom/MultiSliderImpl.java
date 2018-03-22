@@ -1,4 +1,4 @@
-package telvape.mobilau.view;
+package telvape.mobilau.view.juice.custom;
 
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
@@ -9,6 +9,7 @@ import io.apptik.widget.MultiSlider;
 import telvape.mobilau.R;
 import telvape.mobilau.custom.ColorTemplate;
 import telvape.mobilau.model.Flavor;
+import telvape.mobilau.view.juice.custom.bottomsheet.BottomSheetView;
 
 /**
  * Created by sbabu on 3/2/18.
@@ -23,8 +24,8 @@ public class MultiSliderImpl implements MultiSliderView {
 
     private BottomSheetView bottomSheetView;
 
-    MultiSliderImpl(MainView mainView, BottomSheetView bottomSheetView, List<Flavor> recipe) {
-        multiSlider = ((MainActivity)mainView).findViewById(R.id.multiSlider);
+    public MultiSliderImpl(CustomJuiceView customJuiceView, BottomSheetView bottomSheetView, List<Flavor> recipe) {
+        multiSlider = ((CustomJuiceActivity) customJuiceView).findViewById(R.id.multiSlider);
         this.recipe = recipe;
 
         this.bottomSheetView = bottomSheetView;

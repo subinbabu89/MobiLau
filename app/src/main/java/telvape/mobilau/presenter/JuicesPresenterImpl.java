@@ -2,15 +2,12 @@ package telvape.mobilau.presenter;
 
 import android.util.Log;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import telvape.mobilau.model.Juice;
 import telvape.mobilau.model.JuiceResponse;
 import telvape.mobilau.network.JuiceFetchInterface;
-import telvape.mobilau.view.JuicesView;
+import telvape.mobilau.view.juice.JuicesView;
 
 /**
  * Created by sbabu on 3/21/18.

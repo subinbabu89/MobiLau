@@ -7,19 +7,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import telvape.mobilau.model.Flavor;
 import telvape.mobilau.network.FlavorFetchInterface;
-import telvape.mobilau.view.MainView;
+import telvape.mobilau.view.juice.custom.CustomJuiceView;
 
 /**
  *
  * Created by sbabu on 2/27/18.
  */
 
-public class MainPresenterImpl implements MainPresenter {
+public class CustomJuicePresenterImpl implements CustomJuicePresenter {
+    private static final String TAG = "CustomJuicePresenterImp";
 
-    private MainView mainView;
+    private CustomJuiceView customJuiceView;
 
-    public MainPresenterImpl(MainView mainView) {
-        this.mainView = mainView;
+    public CustomJuicePresenterImpl(CustomJuiceView customJuiceView) {
+        this.customJuiceView = customJuiceView;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class MainPresenterImpl implements MainPresenter {
         flavors.enqueue(new Callback<List<Flavor>>() {
             @Override
             public void onResponse(Call<List<Flavor>> call, Response<List<Flavor>> response) {
-                mainView.displayFlavors(response.body());
+                customJuiceView.displayFlavors(response.body());
             }
 
             @Override

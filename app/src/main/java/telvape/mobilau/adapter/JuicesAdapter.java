@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import telvape.mobilau.R;
 import telvape.mobilau.model.Juice;
-import telvape.mobilau.view.JuicesView;
+import telvape.mobilau.view.juice.JuicesView;
 
 /**
  *

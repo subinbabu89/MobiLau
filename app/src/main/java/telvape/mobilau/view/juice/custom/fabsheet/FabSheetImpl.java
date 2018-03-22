@@ -1,6 +1,5 @@
-package telvape.mobilau.view;
+package telvape.mobilau.view.juice.custom.fabsheet;
 
-import android.graphics.Canvas;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +16,8 @@ import telvape.mobilau.custom.Fab;
 import telvape.mobilau.custom.IngredientItemDecoration;
 import telvape.mobilau.custom.RecyclerItemTouchHelper;
 import telvape.mobilau.model.Flavor;
+import telvape.mobilau.view.juice.custom.CustomJuiceActivity;
+import telvape.mobilau.view.juice.custom.CustomJuiceView;
 
 /**
  *
@@ -25,14 +26,14 @@ import telvape.mobilau.model.Flavor;
 
 public class FabSheetImpl implements FabSheetView,RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
-    private MainView mainView;
+    private CustomJuiceView customJuiceView;
     private List<Flavor> recipe;
 
     private Fab fab;
     private FabFlavorsAdapter fabIngredientsAdapter;
 
-    FabSheetImpl(MainView mainView,List<Flavor> recipe) {
-        this.mainView = mainView;
+    public FabSheetImpl(CustomJuiceView customJuiceView, List<Flavor> recipe) {
+        this.customJuiceView = customJuiceView;
         this.recipe = recipe;
 
         initFabSheet();
@@ -40,15 +41,15 @@ public class FabSheetImpl implements FabSheetView,RecyclerItemTouchHelper.Recycl
 
     @SuppressWarnings("unused")
     private void initFabSheet(){
-        fab = ((MainActivity)mainView).findViewById(R.id.floatingActionButton);
-        View sheetView = ((MainActivity)mainView).findViewById(R.id.fab_sheet);
-        View overlay = ((MainActivity)mainView).findViewById(R.id.overlay);
-        int sheetColor = ((MainActivity)mainView).getResources().getColor(R.color.colorPrimaryDark);
-        int fabColor = ((MainActivity)mainView).getResources().getColor(R.color.colorAccent);
+        fab = ((CustomJuiceActivity) customJuiceView).findViewById(R.id.floatingActionButton);
+        View sheetView = ((CustomJuiceActivity) customJuiceView).findViewById(R.id.fab_sheet);
+        View overlay = ((CustomJuiceActivity) customJuiceView).findViewById(R.id.overlay);
+        int sheetColor = ((CustomJuiceActivity) customJuiceView).getResources().getColor(R.color.colorPrimaryDark);
+        int fabColor = ((CustomJuiceActivity) customJuiceView).getResources().getColor(R.color.colorAccent);
 
-        RecyclerView ingredientList = new RecyclerView(((MainActivity)mainView));
-        ingredientList.setLayoutManager(new LinearLayoutManager(((MainActivity)mainView)));
-        int spacinginPixels = ((MainActivity)mainView).getResources().getDimensionPixelSize(R.dimen.ingredient_spacing);
+        RecyclerView ingredientList = new RecyclerView(((CustomJuiceActivity) customJuiceView));
+        ingredientList.setLayoutManager(new LinearLayoutManager(((CustomJuiceActivity) customJuiceView)));
+        int spacinginPixels = ((CustomJuiceActivity) customJuiceView).getResources().getDimensionPixelSize(R.dimen.ingredient_spacing);
         ingredientList.addItemDecoration(new IngredientItemDecoration(spacinginPixels));
         fabIngredientsAdapter = new FabFlavorsAdapter(recipe);
         ingredientList.setAdapter(fabIngredientsAdapter);
@@ -80,7 +81,7 @@ public class FabSheetImpl implements FabSheetView,RecyclerItemTouchHelper.Recycl
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if(viewHolder instanceof FabFlavorsAdapter.ViewHolder){
-            mainView.removeFlavor(recipe.get(viewHolder.getAdapterPosition()));
+            customJuiceView.removeFlavor(recipe.get(viewHolder.getAdapterPosition()));
         }
     }
 }

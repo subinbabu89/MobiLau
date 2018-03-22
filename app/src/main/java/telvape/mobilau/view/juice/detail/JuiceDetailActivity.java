@@ -1,12 +1,13 @@
-package telvape.mobilau.view;
+package telvape.mobilau.view.juice.detail;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import telvape.mobilau.BaseActivity;
 import telvape.mobilau.R;
+import telvape.mobilau.adapter.RecipeIngredientAdapter;
 import telvape.mobilau.model.Juice;
 
 public class JuiceDetailActivity extends BaseActivity {
@@ -22,6 +23,9 @@ public class JuiceDetailActivity extends BaseActivity {
     @BindView(R.id.txtv_nicotine)
     TextView juiceNicotine;
 
+    @BindView(R.id.recyclerview_ingredients)
+    RecyclerView ingredients;
+
     @Override
     public int getContentLayout() {
         return R.layout.activity_juice_detail;
@@ -36,5 +40,8 @@ public class JuiceDetailActivity extends BaseActivity {
         juiceNicotine.setText(juice.getNicotine());
         juicePGVG.setText(juice.getPgvg());
         juiceRating.setText(juice.getRating());
+
+        ingredients.setLayoutManager(new LinearLayoutManager(this));
+        ingredients.setAdapter(new RecipeIngredientAdapter(juice.getIngredients()));
     }
 }
