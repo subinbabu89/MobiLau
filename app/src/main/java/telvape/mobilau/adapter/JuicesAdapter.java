@@ -1,10 +1,14 @@
 package telvape.mobilau.adapter;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -26,6 +30,8 @@ public class JuicesAdapter extends RecyclerView.Adapter<JuicesAdapter.ViewHolder
     private List<Juice> juices;
     private JuicesView juicesView;
 
+    private Context context;
+
     public JuicesAdapter(JuicesView juicesView, List<Juice> juices) {
         this.juicesView = juicesView;
         this.juices = juices;
@@ -33,7 +39,8 @@ public class JuicesAdapter extends RecyclerView.Adapter<JuicesAdapter.ViewHolder
 
     @Override
     public JuicesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flavor,parent,false);
+        context = parent.getContext();
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_juice,parent,false);
         return new ViewHolder(view);
     }
 
@@ -51,6 +58,8 @@ public class JuicesAdapter extends RecyclerView.Adapter<JuicesAdapter.ViewHolder
 
         @BindView(R.id.txtv_label)
         TextView txtv_label;
+        @BindView(R.id.ll_flavors)
+        LinearLayout flavors;
 
         Juice juice;
 
@@ -63,6 +72,47 @@ public class JuicesAdapter extends RecyclerView.Adapter<JuicesAdapter.ViewHolder
         void bind(Juice juice){
             this.juice = juice;
             txtv_label.setText(juice.getName());
+            int flavorCount = juice.getFlavors().size();
+            Log.d(TAG, "bind: value is " + (flavorCount<3?flavorCount:3));
+            flavors.removeAllViews();
+            for (int i = 0; i < (flavorCount<3?flavorCount:3); i++) {
+                ImageView flavorImage = new ImageView(context);
+                Drawable d;
+                switch (juice.getFlavors().get(i)){
+                    case "Sweet":
+                        d = context.getDrawable(R.drawable.ic_flavor_sweet);
+                        break;
+                     case "Creamy":
+                         d = context.getDrawable(R.drawable.ic_flavor_creamy);
+                         break;
+                     case "Fruity":
+                         d = context.getDrawable(R.drawable.ic_flavor_fruity);
+                         break;
+                     case "Rich":
+                         d = context.getDrawable(R.drawable.ic_flavor_rich);
+                         break;
+                     case "Spiced":
+                         d = context.getDrawable(R.drawable.ic_flavor_spicy);
+                         break;
+                     case "Tobacco":
+                         d = context.getDrawable(R.drawable.ic_flavor_tobacco);
+                         break;
+                     case "Cool":
+                         d = context.getDrawable(R.drawable.ic_flavor_cool);
+                         break;
+                     case "Nutty":
+                         d = context.getDrawable(R.drawable.ic_flavor_nutty);
+                         break;
+                     case "Coffee":
+                         d = context.getDrawable(R.drawable.ic_flavor_coffee);
+                         break;
+                        default:
+                            d = context.getDrawable(R.drawable.ic_flavor_all);
+                            break;
+                }
+                flavorImage.setImageDrawable(d);
+                flavors.addView(flavorImage);
+            }
         }
 
         @Override
