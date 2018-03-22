@@ -59,7 +59,7 @@ public class AllFlavorAdapter extends RecyclerView.Adapter<AllFlavorAdapter.View
         }
 
         void bind(Flavor flavor){
-            txtvFlavorName.setText(flavor.getName());
+            txtvFlavorName.setText(flavor.getTitle());
             this.flavor = flavor;
         }
 

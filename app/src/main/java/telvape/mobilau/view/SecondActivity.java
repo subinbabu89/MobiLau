@@ -89,14 +89,8 @@ public class SecondActivity extends BaseActivity {
     }
 
     private void initIngredientList(){
-        List<Flavor> ingredients = new ArrayList<>();
-        ingredients.add(new Flavor("Spearmint"));
-        ingredients.add(new Flavor("Fruit"));
-        ingredients.add(new Flavor("Cream"));
-        ingredients.add(new Flavor("Tears"));
-
         ingredientList = new RecyclerView(this);
         ingredientList.setLayoutManager(new LinearLayoutManager(this));
-        ingredientList.setAdapter(new FabFlavorsAdapter(ingredients));
+//        ingredientList.setAdapter(new FabFlavorsAdapter(ingredients));
     }
 }

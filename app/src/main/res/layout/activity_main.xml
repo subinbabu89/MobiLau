@@ -32,8 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:clickable="true"
-        app:layout_anchor="@+id/bottom_sheet"
-        app:layout_anchorGravity="top|end"
+        app:layout_anchor="@+id/fab_sheet"
+        app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/avd_anim" />
     <!-- Overlay that dims the screen -->
     <com.gordonwong.materialsheetfab.DimOverlayFrameLayout

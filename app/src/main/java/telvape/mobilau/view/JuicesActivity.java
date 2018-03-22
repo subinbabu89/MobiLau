@@ -1,0 +1,55 @@
+package telvape.mobilau.view;
+
+import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
+import java.util.List;
+
+import butterknife.BindView;
+import telvape.mobilau.BaseActivity;
+import telvape.mobilau.R;
+import telvape.mobilau.adapter.AllFlavorAdapter;
+import telvape.mobilau.adapter.JuicesAdapter;
+import telvape.mobilau.custom.IngredientItemDecoration;
+import telvape.mobilau.model.Juice;
+import telvape.mobilau.presenter.JuicesPresenter;
+import telvape.mobilau.presenter.JuicesPresenterImpl;
+
+/**
+ * Created by sbabu on 3/21/18.
+ */
+
+public class JuicesActivity extends BaseActivity implements JuicesView{
+
+    @BindView(R.id.recyclerview_juices)
+    RecyclerView recyclerViewJuices;
+
+    private JuicesPresenter juicesPresenter;
+
+    @Override
+    public int getContentLayout() {
+        return R.layout.activity_juices;
+    }
+
+    @Override
+    public void initViewComponents() {
+        juicesPresenter = new JuicesPresenterImpl(this);
+        juicesPresenter.fetchJuices();
+    }
+
+    @Override
+    public void displayJuices(List<Juice> juices) {
+        recyclerViewJuices.setLayoutManager(new GridLayoutManager(this,2));
+        int spacinginPixels = getResources().getDimensionPixelSize(R.dimen.ingredient_spacing);
+        recyclerViewJuices.addItemDecoration(new IngredientItemDecoration(spacinginPixels));
+        recyclerViewJuices.setAdapter(new JuicesAdapter(this,juices));
+    }
+
+    @Override
+    public void navigateToDetail(Juice juice) {
+        Intent intent = new Intent(JuicesActivity.this,JuiceDetailActivity.class);
+        intent.putExtra("juice",juice);
+        startActivity(intent);
+    }
+}

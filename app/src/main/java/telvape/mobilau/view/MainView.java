@@ -14,4 +14,6 @@ public interface MainView {
     void displayFlavors(List<Flavor> ingredients);
 
     void addFlavor(Flavor flavor);
+
+    void removeFlavor(Flavor flavor);
 }

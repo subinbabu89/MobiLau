@@ -1,21 +1,29 @@
 package telvape.mobilau.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  *
  * Created by sbabu on 3/1/18.
  */
 
 public class Flavor {
-    private String name;
-    private int percentage;
 
-    public Flavor(String name) {
-        this.name = name;
-        this.percentage = 0;
+    @SerializedName("id")
+    private int id;
+    @SerializedName("title")
+    private String title;
+    @SerializedName("description")
+    private String description;
+
+    private int percentage = 0;
+
+    public String getTitle() {
+        return title;
     }
 
-    public String getName() {
-        return name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getPercentage() {

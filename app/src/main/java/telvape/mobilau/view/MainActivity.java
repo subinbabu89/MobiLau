@@ -62,6 +62,18 @@ public class MainActivity extends BaseActivity implements MainView {
         bottomSheetView.showBottomSheet();
     }
 
+    @Override
+    public void removeFlavor(Flavor flavor) {
+        recipeFlavors.remove(flavor);
+        if(recipeFlavors.size()==0){
+            bottomSheetView.hideBottomSheet();
+        }else{
+            recalculatePercentages(recipeFlavors);
+            bottomSheetView.showBottomSheet();
+        }
+
+    }
+
     private void animateMix() {
         AnimatedVectorDrawableCompat animatedVector = AnimatedVectorDrawableCompat.create(this, R.drawable.avd_anim);
         floatingActionButton.setImageDrawable(animatedVector);
@@ -76,4 +88,6 @@ public class MainActivity extends BaseActivity implements MainView {
             flavors.get(i).setPercentage(100/size);
         }
     }
+
+
 }

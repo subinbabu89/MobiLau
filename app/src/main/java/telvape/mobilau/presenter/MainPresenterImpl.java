@@ -1,9 +1,12 @@
 package telvape.mobilau.presenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import telvape.mobilau.model.Flavor;
+import telvape.mobilau.network.FlavorFetchInterface;
 import telvape.mobilau.view.MainView;
 
 /**
@@ -21,26 +24,20 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void fetchIngredients() {
-        List<Flavor> ingredients = new ArrayList<>();
-        ingredients.add(new Flavor("Spearmint"));
-        ingredients.add(new Flavor("Fruit"));
-        ingredients.add(new Flavor("Cream"));
-        ingredients.add(new Flavor("Tears"));
-        ingredients.add(new Flavor("Spearmint"));
-        ingredients.add(new Flavor("Fruit"));
-        ingredients.add(new Flavor("Cream"));
-        ingredients.add(new Flavor("Tears"));
-        ingredients.add(new Flavor("Spearmint"));
-        ingredients.add(new Flavor("Fruit"));
-        ingredients.add(new Flavor("Cream"));
-        ingredients.add(new Flavor("Tears"));
-        ingredients.add(new Flavor("Spearmint"));
-        ingredients.add(new Flavor("Fruit"));
-        ingredients.add(new Flavor("Cream"));
-        ingredients.add(new Flavor("Tears"));
 
-        mainView.displayFlavors(ingredients);
+        FlavorFetchInterface flavorFetchInterface = FlavorFetchInterface.FlavorFetchAPI.flavorFetchAPI();
+        Call<List<Flavor>> flavors = flavorFetchInterface.getFlavors();
+
+        flavors.enqueue(new Callback<List<Flavor>>() {
+            @Override
+            public void onResponse(Call<List<Flavor>> call, Response<List<Flavor>> response) {
+                mainView.displayFlavors(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Flavor>> call, Throwable t) {
+
+            }
+        });
     }
-
-
 }

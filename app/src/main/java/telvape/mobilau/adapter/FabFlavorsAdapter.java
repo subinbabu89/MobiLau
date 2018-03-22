@@ -41,7 +41,7 @@ public class FabFlavorsAdapter extends RecyclerView.Adapter<FabFlavorsAdapter.Vi
         return ingredients.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.txtv_label)
         TextView textView;
@@ -55,8 +55,13 @@ public class FabFlavorsAdapter extends RecyclerView.Adapter<FabFlavorsAdapter.Vi
 
         void bind(Flavor ingredient){
             this.ingredient = ingredient;
-            textView.setText(ingredient.getName());
+            textView.setText(ingredient.getTitle());
 
         }
+    }
+
+    public void removeItem(Flavor flavor){
+        ingredients.remove(flavor);
+        notifyDataSetChanged();
     }
 }

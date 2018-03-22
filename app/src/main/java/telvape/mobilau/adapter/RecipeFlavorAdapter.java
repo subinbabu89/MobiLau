@@ -56,7 +56,7 @@ public class RecipeFlavorAdapter extends RecyclerView.Adapter<RecipeFlavorAdapte
         }
 
         void bind(Flavor flavor){
-            ingredientName.setText(flavor.getName());
+            ingredientName.setText(flavor.getTitle());
             ingredientPercentage.setText(String.valueOf(flavor.getPercentage()));
         }
     }

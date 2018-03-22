@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.SecondActivity"></activity>
+        <activity android:name=".view.SecondActivity" />
+        <activity android:name=".view.JuiceDetailActivity"/>
     </application>
 
 </manifest>

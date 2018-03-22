@@ -92,7 +92,7 @@ public class BottomSheetImpl implements BottomSheetView {
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
         for (int i = 0; i < recipe.size(); i++) {
-            entries.add(new PieEntry(recipe.get(i).getPercentage(), recipe.get(i).getName()));
+            entries.add(new PieEntry(recipe.get(i).getPercentage(), recipe.get(i).getTitle()));
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "");
@@ -120,6 +120,13 @@ public class BottomSheetImpl implements BottomSheetView {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             bottomSheetBehavior.setHideable(false);
         }
+        fabSheetView.notifyFabUpdate();
+    }
+
+    @Override
+    public void hideBottomSheet() {
+        bottomSheetBehavior.setHideable(true);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         fabSheetView.notifyFabUpdate();
     }
 

@@ -1,8 +1,10 @@
 package telvape.mobilau.view;
 
+import android.graphics.Canvas;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
@@ -13,6 +15,7 @@ import telvape.mobilau.R;
 import telvape.mobilau.adapter.FabFlavorsAdapter;
 import telvape.mobilau.custom.Fab;
 import telvape.mobilau.custom.IngredientItemDecoration;
+import telvape.mobilau.custom.RecyclerItemTouchHelper;
 import telvape.mobilau.model.Flavor;
 
 /**
@@ -20,7 +23,7 @@ import telvape.mobilau.model.Flavor;
  * Created by sbabu on 3/2/18.
  */
 
-public class FabSheetImpl implements FabSheetView {
+public class FabSheetImpl implements FabSheetView,RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
     private MainView mainView;
     private List<Flavor> recipe;
@@ -54,6 +57,8 @@ public class FabSheetImpl implements FabSheetView {
         // Initialize material sheet FAB
         MaterialSheetFab<Fab> materialSheetFab = new MaterialSheetFab<>(fab, sheetView, overlay,
                 sheetColor, fabColor);
+
+        customizeRecyclerView(ingredientList);
     }
 
     @Override
@@ -64,5 +69,18 @@ public class FabSheetImpl implements FabSheetView {
     @Override
     public void notifyFabUpdate() {
         fabIngredientsAdapter.notifyDataSetChanged();
+    }
+
+
+    void customizeRecyclerView(RecyclerView recyclerView){
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if(viewHolder instanceof FabFlavorsAdapter.ViewHolder){
+            mainView.removeFlavor(recipe.get(viewHolder.getAdapterPosition()));
+        }
     }
 }

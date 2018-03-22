@@ -14,4 +14,7 @@ public interface BottomSheetView {
     void setData(List<Flavor> recipe);
 
     void showBottomSheet();
+
+    void hideBottomSheet();
+
 }
