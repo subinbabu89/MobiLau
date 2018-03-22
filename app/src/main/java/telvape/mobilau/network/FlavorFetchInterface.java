@@ -9,9 +9,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import telvape.mobilau.model.Flavor;
-import telvape.mobilau.model.Juice;
 
 /**
+ *
  * Created by sbabu on 3/6/18.
  */
 

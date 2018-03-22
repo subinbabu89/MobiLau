@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ *
  * Created by sbabu on 3/21/18.
  */
 
@@ -61,7 +62,7 @@ public class Juice implements Parcelable{
         return ingredients;
     }
 
-    protected Juice(Parcel in) {
+    private Juice(Parcel in) {
         name = in.readString();
         desc = in.readString();
         rating = in.readString();

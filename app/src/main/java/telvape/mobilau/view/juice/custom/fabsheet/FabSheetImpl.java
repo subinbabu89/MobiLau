@@ -73,7 +73,7 @@ public class FabSheetImpl implements FabSheetView,RecyclerItemTouchHelper.Recycl
     }
 
 
-    void customizeRecyclerView(RecyclerView recyclerView){
+    private void customizeRecyclerView(RecyclerView recyclerView){
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
     }

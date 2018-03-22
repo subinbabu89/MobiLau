@@ -1,5 +1,7 @@
 package telvape.mobilau.presenter;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -13,7 +15,7 @@ import telvape.mobilau.view.juice.custom.CustomJuiceView;
  *
  * Created by sbabu on 2/27/18.
  */
-
+@SuppressWarnings("unused")
 public class CustomJuicePresenterImpl implements CustomJuicePresenter {
     private static final String TAG = "CustomJuicePresenterImp";
 
@@ -31,12 +33,12 @@ public class CustomJuicePresenterImpl implements CustomJuicePresenter {
 
         flavors.enqueue(new Callback<List<Flavor>>() {
             @Override
-            public void onResponse(Call<List<Flavor>> call, Response<List<Flavor>> response) {
+            public void onResponse(@NonNull Call<List<Flavor>> call, @NonNull Response<List<Flavor>> response) {
                 customJuiceView.displayFlavors(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Flavor>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Flavor>> call, @NonNull Throwable t) {
 
             }
         });

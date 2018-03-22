@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by sbabu on 3/1/18.
  */
 
+@SuppressWarnings("unused")
 public class Flavor {
 
     @SerializedName("id")

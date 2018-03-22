@@ -8,12 +8,13 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
+ *
  * Created by sbabu on 3/22/18.
  */
 
 public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredientAdapter.ViewHolder> {
 
-    List<String> ingredients;
+    private List<String> ingredients;
 
     public RecipeIngredientAdapter(List<String> ingredients) {
         this.ingredients = ingredients;

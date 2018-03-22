@@ -1,5 +1,6 @@
 package telvape.mobilau.view.juice;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,15 +18,15 @@ import telvape.mobilau.presenter.JuicesPresenterImpl;
 import telvape.mobilau.view.juice.detail.JuiceDetailActivity;
 
 /**
+ *
  * Created by sbabu on 3/21/18.
  */
 
+@SuppressLint("Registered")
 public class JuicesActivity extends BaseActivity implements JuicesView{
 
     @BindView(R.id.recyclerview_juices)
     RecyclerView recyclerViewJuices;
-
-    private JuicesPresenter juicesPresenter;
 
     @Override
     public int getContentLayout() {
@@ -34,7 +35,7 @@ public class JuicesActivity extends BaseActivity implements JuicesView{
 
     @Override
     public void initViewComponents() {
-        juicesPresenter = new JuicesPresenterImpl(this);
+        JuicesPresenter juicesPresenter = new JuicesPresenterImpl(this);
         juicesPresenter.fetchJuices();
     }
 

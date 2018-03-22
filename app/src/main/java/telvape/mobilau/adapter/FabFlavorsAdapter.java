@@ -60,6 +60,7 @@ public class FabFlavorsAdapter extends RecyclerView.Adapter<FabFlavorsAdapter.Vi
         }
     }
 
+    @SuppressWarnings("unused")
     public void removeItem(Flavor flavor){
         ingredients.remove(flavor);
         notifyDataSetChanged();

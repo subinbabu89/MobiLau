@@ -9,10 +9,10 @@ import android.view.View;
  * Created by sbabu on 3/1/18.
  */
 
-public class IngredientItemDecoration extends RecyclerView.ItemDecoration{
+public class IngredientItemDecoration extends RecyclerView.ItemDecoration {
     private int space;
 
-    public IngredientItemDecoration(int space){
+    public IngredientItemDecoration(int space) {
         this.space = space;
     }
 
@@ -21,9 +21,7 @@ public class IngredientItemDecoration extends RecyclerView.ItemDecoration{
 //        super.getItemOffsets(outRect, view, parent, state);
         outRect.left = space;
         outRect.right = space;
-
         outRect.bottom = space;
-
-            outRect.top = space;
+        outRect.top = space;
     }
 }
