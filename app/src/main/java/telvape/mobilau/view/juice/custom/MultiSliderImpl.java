@@ -2,9 +2,12 @@ package telvape.mobilau.view.juice.custom;
 
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
+import android.view.View;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.apptik.widget.MultiSlider;
 import telvape.mobilau.R;
 import telvape.mobilau.custom.ColorTemplate;
@@ -19,15 +22,15 @@ import telvape.mobilau.view.juice.custom.bottomsheet.BottomSheetView;
 public class MultiSliderImpl implements MultiSliderView {
     private static final String TAG = "MultiSliderImpl";
 
-    private MultiSlider multiSlider;
+    @BindView(R.id.multiSlider)
+    public MultiSlider multiSlider;
     private List<Flavor> recipe;
 
     private BottomSheetView bottomSheetView;
 
-    public MultiSliderImpl(CustomJuiceView customJuiceView, BottomSheetView bottomSheetView, List<Flavor> recipe) {
-        multiSlider = ((CustomJuiceActivity) customJuiceView).findViewById(R.id.multiSlider);
+    public MultiSliderImpl(View llBottomSheet, BottomSheetView bottomSheetView, List<Flavor> recipe) {
+        ButterKnife.bind(this,llBottomSheet);
         this.recipe = recipe;
-
         this.bottomSheetView = bottomSheetView;
     }
 

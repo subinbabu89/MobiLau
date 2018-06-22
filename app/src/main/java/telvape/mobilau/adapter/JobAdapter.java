@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import telvape.mobilau.R;
 import telvape.mobilau.model.Job;
-import telvape.mobilau.view.juice.custom.CustomJuiceActivity;
+import telvape.mobilau.view.LandingActivity;
 import telvape.mobilau.view.SecondActivity;
 
 /**
@@ -78,7 +78,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder>{
 
             String transitionName = context.getResources().getString(R.string.transition_string);
             ActivityOptionsCompat options =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation((CustomJuiceActivity)context,
+                    ActivityOptionsCompat.makeSceneTransitionAnimation((LandingActivity)context,
                             card_view,   // Starting view
                             transitionName    // The String
                     );

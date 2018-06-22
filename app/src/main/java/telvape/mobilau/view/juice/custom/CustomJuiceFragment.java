@@ -1,26 +1,30 @@
 package telvape.mobilau.view.juice.custom;
 
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import telvape.mobilau.BaseActivity;
 import telvape.mobilau.R;
 import telvape.mobilau.adapter.AllFlavorAdapter;
 import telvape.mobilau.custom.IngredientItemDecoration;
 import telvape.mobilau.model.Flavor;
 import telvape.mobilau.presenter.CustomJuicePresenter;
 import telvape.mobilau.presenter.CustomJuicePresenterImpl;
+import telvape.mobilau.view.BaseFragment;
+import telvape.mobilau.view.juice.JuiceFragment;
 import telvape.mobilau.view.juice.custom.bottomsheet.BottomSheetImpl;
 import telvape.mobilau.view.juice.custom.bottomsheet.BottomSheetView;
 
-public class CustomJuiceActivity extends BaseActivity implements CustomJuiceView {
+public class CustomJuiceFragment extends BaseFragment implements CustomJuiceView {
 
     @BindView(R.id.floatingActionButton)
     FloatingActionButton floatingActionButton;
@@ -34,26 +38,34 @@ public class CustomJuiceActivity extends BaseActivity implements CustomJuiceView
 
     BottomSheetView bottomSheetView;
 
+    @BindView(R.id.bottom_sheet)
+    ConstraintLayout llBottomSheet;
+
     @Override
-    public int getContentLayout() {
+    public int initLayoutID() {
         return R.layout.activity_main;
     }
 
     @Override
-    public void initViewComponents() {
+    public void initViews(View parent) {
+
+    }
+
+    @Override
+    public void customizeFragment() {
         customJuicePresenter = new CustomJuicePresenterImpl(this);
         customJuicePresenter.fetchIngredients();
 
         recipeFlavors = new ArrayList<>();
-        bottomSheetView = new BottomSheetImpl(this,recipeFlavors);
+        bottomSheetView = new BottomSheetImpl(getContext(),getParent(),llBottomSheet,recipeFlavors,this);
     }
 
     @Override
-    public void displayFlavors(List<Flavor> flavors) {
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+    public void displayFlavors(List<Flavor> ingredients) {
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         int spacinginPixels = getResources().getDimensionPixelSize(R.dimen.ingredient_spacing);
         recyclerView.addItemDecoration(new IngredientItemDecoration(spacinginPixels));
-        recyclerView.setAdapter(new AllFlavorAdapter(this, flavors));
+        recyclerView.setAdapter(new AllFlavorAdapter(this, ingredients));
     }
 
     @Override
@@ -73,11 +85,10 @@ public class CustomJuiceActivity extends BaseActivity implements CustomJuiceView
             recalculatePercentages(recipeFlavors);
             bottomSheetView.showBottomSheet();
         }
-
     }
 
     private void animateMix() {
-        AnimatedVectorDrawableCompat animatedVector = AnimatedVectorDrawableCompat.create(this, R.drawable.avd_anim);
+        AnimatedVectorDrawableCompat animatedVector = AnimatedVectorDrawableCompat.create(getContext(), R.drawable.avd_anim);
         floatingActionButton.setImageDrawable(animatedVector);
 
         Drawable d = floatingActionButton.getDrawable();
