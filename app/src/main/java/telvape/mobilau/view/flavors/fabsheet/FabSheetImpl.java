@@ -1,4 +1,4 @@
-package telvape.mobilau.view.juice.custom.fabsheet;
+package telvape.mobilau.view.flavors.fabsheet;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -19,7 +19,7 @@ import telvape.mobilau.custom.Fab;
 import telvape.mobilau.custom.IngredientItemDecoration;
 import telvape.mobilau.custom.RecyclerItemTouchHelper;
 import telvape.mobilau.model.Flavor;
-import telvape.mobilau.view.juice.custom.CustomJuiceView;
+import telvape.mobilau.view.flavors.FlavorsView;
 
 /**
  * Created by sbabu on 3/2/18.
@@ -39,13 +39,13 @@ public class FabSheetImpl implements FabSheetView, RecyclerItemTouchHelper.Recyc
     private FabFlavorsAdapter fabIngredientsAdapter;
     private Context context;
 
-    private CustomJuiceView customJuiceView;
+    private FlavorsView flavorsView;
 
-    public FabSheetImpl(Context context, View parent, List<Flavor> recipe, CustomJuiceView customJuiceView) {
+    public FabSheetImpl(Context context, View parent, List<Flavor> recipe, FlavorsView flavorsView) {
         ButterKnife.bind(this, parent);
         this.context = context;
         this.recipe = recipe;
-        this.customJuiceView = customJuiceView;
+        this.flavorsView = flavorsView;
         initFabSheet();
     }
 
@@ -88,7 +88,7 @@ public class FabSheetImpl implements FabSheetView, RecyclerItemTouchHelper.Recyc
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (viewHolder instanceof FabFlavorsAdapter.ViewHolder) {
-            customJuiceView.removeFlavor(recipe.get(viewHolder.getAdapterPosition()));
+            flavorsView.removeFlavor(recipe.get(viewHolder.getAdapterPosition()));
         }
     }
 }

@@ -1,4 +1,4 @@
-package telvape.mobilau.view.juice.custom;
+package telvape.mobilau.view.flavors;
 
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
@@ -12,7 +12,7 @@ import io.apptik.widget.MultiSlider;
 import telvape.mobilau.R;
 import telvape.mobilau.custom.ColorTemplate;
 import telvape.mobilau.model.Flavor;
-import telvape.mobilau.view.juice.custom.bottomsheet.BottomSheetView;
+import telvape.mobilau.view.flavors.bottomsheet.BottomSheetView;
 
 /**
  * Created by sbabu on 3/2/18.

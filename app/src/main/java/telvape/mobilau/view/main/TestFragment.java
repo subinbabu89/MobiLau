@@ -1,4 +1,4 @@
-package telvape.mobilau.view;
+package telvape.mobilau.view.main;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import telvape.mobilau.R;
+import telvape.mobilau.view.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.

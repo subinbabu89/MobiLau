@@ -1,6 +1,5 @@
 package telvape.mobilau.view;
 
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,10 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import telvape.mobilau.BaseActivity;
 import telvape.mobilau.R;
 import telvape.mobilau.view.juice.JuiceFragment;
-import telvape.mobilau.view.juice.custom.CustomJuiceFragment;
+import telvape.mobilau.view.flavors.FlavorsFragment;
+import telvape.mobilau.view.main.TestFragment;
 
 public class LandingActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -92,7 +91,7 @@ public class LandingActivity extends BaseActivity
         } else if (id == R.id.nav_juices) {
            fragment = new JuiceFragment();
         } else if (id == R.id.nav_flavors) {
-            fragment = new CustomJuiceFragment();
+            fragment = new FlavorsFragment();
         } else if (id == R.id.nav_support) {
 
         }

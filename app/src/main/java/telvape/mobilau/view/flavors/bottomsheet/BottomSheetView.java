@@ -1,4 +1,4 @@
-package telvape.mobilau.view.juice.custom.bottomsheet;
+package telvape.mobilau.view.flavors.bottomsheet;
 
 import java.util.List;
 

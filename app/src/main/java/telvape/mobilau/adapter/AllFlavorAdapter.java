@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import telvape.mobilau.R;
 import telvape.mobilau.model.Flavor;
-import telvape.mobilau.view.juice.custom.CustomJuiceView;
+import telvape.mobilau.view.flavors.FlavorsView;
 
 /**
  * 
@@ -22,10 +22,10 @@ import telvape.mobilau.view.juice.custom.CustomJuiceView;
 public class AllFlavorAdapter extends RecyclerView.Adapter<AllFlavorAdapter.ViewHolder> {
 
     private List<Flavor> flavors;
-    private CustomJuiceView customJuiceView;
+    private FlavorsView flavorsView;
 
-    public AllFlavorAdapter(CustomJuiceView customJuiceView, List<Flavor> flavors) {
-        this.customJuiceView = customJuiceView;
+    public AllFlavorAdapter(FlavorsView flavorsView, List<Flavor> flavors) {
+        this.flavorsView = flavorsView;
         this.flavors = flavors;
     }
 
@@ -65,7 +65,7 @@ public class AllFlavorAdapter extends RecyclerView.Adapter<AllFlavorAdapter.View
 
         @Override
         public void onClick(View view) {
-            customJuiceView.addFlavor(flavor);
+            flavorsView.addFlavor(flavor);
         }
     }
 }

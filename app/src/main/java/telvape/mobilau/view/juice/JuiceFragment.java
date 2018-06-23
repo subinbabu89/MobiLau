@@ -1,7 +1,6 @@
 package telvape.mobilau.view.juice;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,7 +15,6 @@ import telvape.mobilau.model.Juice;
 import telvape.mobilau.presenter.JuicesPresenter;
 import telvape.mobilau.presenter.JuicesPresenterImpl;
 import telvape.mobilau.view.BaseFragment;
-import telvape.mobilau.view.TestFragment;
 import telvape.mobilau.view.juice.detail.JuiceDetailActivity;
 
 public class JuiceFragment extends BaseFragment implements JuicesView{

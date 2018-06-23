@@ -1,10 +1,9 @@
-package telvape.mobilau.view.juice.custom.bottomsheet;
+package telvape.mobilau.view.flavors.bottomsheet;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomSheetBehavior;
 import android.util.Log;
 import android.view.View;
@@ -23,12 +22,11 @@ import butterknife.ButterKnife;
 import telvape.mobilau.R;
 import telvape.mobilau.custom.ColorTemplate;
 import telvape.mobilau.model.Flavor;
-import telvape.mobilau.view.juice.custom.CustomJuiceFragment;
-import telvape.mobilau.view.juice.custom.fabsheet.FabSheetImpl;
-import telvape.mobilau.view.juice.custom.fabsheet.FabSheetView;
-import telvape.mobilau.view.juice.custom.CustomJuiceView;
-import telvape.mobilau.view.juice.custom.MultiSliderImpl;
-import telvape.mobilau.view.juice.custom.MultiSliderView;
+import telvape.mobilau.view.flavors.FlavorsView;
+import telvape.mobilau.view.flavors.fabsheet.FabSheetImpl;
+import telvape.mobilau.view.flavors.fabsheet.FabSheetView;
+import telvape.mobilau.view.flavors.MultiSliderImpl;
+import telvape.mobilau.view.flavors.MultiSliderView;
 
 /**
  *
@@ -38,7 +36,7 @@ import telvape.mobilau.view.juice.custom.MultiSliderView;
 public class BottomSheetImpl implements BottomSheetView {
     private static final String TAG = "BottomSheetImpl";
 
-//    private CustomJuiceView customJuiceView;
+//    private FlavorsView customJuiceView;
     private List<Flavor> recipe;
 
     private MultiSliderView multiSliderView;
@@ -52,25 +50,25 @@ public class BottomSheetImpl implements BottomSheetView {
     private Context context;
     private View parent;
 
-    public BottomSheetImpl(Context context, View parent, View bottomSheetLayout, List<Flavor> recipe,CustomJuiceView customJuiceView) {
+    public BottomSheetImpl(Context context, View parent, View bottomSheetLayout, List<Flavor> recipe,FlavorsView flavorsView) {
         this.parent = parent;
         this.context = context;
         this.recipe = recipe;
         this.multiSliderView = new MultiSliderImpl(bottomSheetLayout,this, recipe);
         ButterKnife.bind(this,bottomSheetLayout);
 
-        initBottomView(bottomSheetLayout,recipe,customJuiceView);
+        initBottomView(bottomSheetLayout,recipe, flavorsView);
         initGraph();
         customizeBottomView();
 
     }
 
-    private void initBottomView(View bottomSheetLayout, List<Flavor> recipe,CustomJuiceView customJuiceView){
+    private void initBottomView(View bottomSheetLayout, List<Flavor> recipe,FlavorsView flavorsView){
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
-        fabSheetView = new FabSheetImpl(context,parent,recipe,customJuiceView);
+        fabSheetView = new FabSheetImpl(context,parent,recipe, flavorsView);
     }
 
     private void customizeBottomView(){

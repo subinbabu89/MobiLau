@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import telvape.mobilau.BaseActivity;
+import telvape.mobilau.view.BaseActivity;
 import telvape.mobilau.R;
 import telvape.mobilau.adapter.RecipeIngredientAdapter;
 import telvape.mobilau.model.Juice;

@@ -1,7 +1,6 @@
-package telvape.mobilau.view.juice.custom;
+package telvape.mobilau.view.flavors;
 
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
@@ -20,11 +19,10 @@ import telvape.mobilau.model.Flavor;
 import telvape.mobilau.presenter.CustomJuicePresenter;
 import telvape.mobilau.presenter.CustomJuicePresenterImpl;
 import telvape.mobilau.view.BaseFragment;
-import telvape.mobilau.view.juice.JuiceFragment;
-import telvape.mobilau.view.juice.custom.bottomsheet.BottomSheetImpl;
-import telvape.mobilau.view.juice.custom.bottomsheet.BottomSheetView;
+import telvape.mobilau.view.flavors.bottomsheet.BottomSheetImpl;
+import telvape.mobilau.view.flavors.bottomsheet.BottomSheetView;
 
-public class CustomJuiceFragment extends BaseFragment implements CustomJuiceView {
+public class FlavorsFragment extends BaseFragment implements FlavorsView {
 
     @BindView(R.id.floatingActionButton)
     FloatingActionButton floatingActionButton;
@@ -57,7 +55,7 @@ public class CustomJuiceFragment extends BaseFragment implements CustomJuiceView
         customJuicePresenter.fetchIngredients();
 
         recipeFlavors = new ArrayList<>();
-        bottomSheetView = new BottomSheetImpl(getContext(),getParent(),llBottomSheet,recipeFlavors,this);
+        bottomSheetView = new BottomSheetImpl(getContext(), getParent(), llBottomSheet, recipeFlavors, this);
     }
 
     @Override
@@ -79,9 +77,9 @@ public class CustomJuiceFragment extends BaseFragment implements CustomJuiceView
     @Override
     public void removeFlavor(Flavor flavor) {
         recipeFlavors.remove(flavor);
-        if(recipeFlavors.size()==0){
+        if (recipeFlavors.size() == 0) {
             bottomSheetView.hideBottomSheet();
-        }else{
+        } else {
             recalculatePercentages(recipeFlavors);
             bottomSheetView.showBottomSheet();
         }
@@ -95,10 +93,10 @@ public class CustomJuiceFragment extends BaseFragment implements CustomJuiceView
         ((AnimatedVectorDrawableCompat) d).start();
     }
 
-    void recalculatePercentages(List<Flavor> flavors){
+    void recalculatePercentages(List<Flavor> flavors) {
         int size = flavors.size();
         for (int i = 0; i < size; i++) {
-            flavors.get(i).setPercentage(100/size);
+            flavors.get(i).setPercentage(100 / size);
         }
     }
 

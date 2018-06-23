@@ -1,4 +1,4 @@
-package telvape.mobilau;
+package telvape.mobilau.view;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;

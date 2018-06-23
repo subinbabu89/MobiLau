@@ -1,4 +1,4 @@
-package telvape.mobilau.view.juice.custom;
+package telvape.mobilau.view.flavors;
 
 /**
  *

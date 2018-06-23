@@ -10,15 +10,9 @@ import android.widget.TextView;
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
 import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
-import telvape.mobilau.BaseActivity;
 import telvape.mobilau.R;
-import telvape.mobilau.adapter.FabFlavorsAdapter;
 import telvape.mobilau.custom.Fab;
-import telvape.mobilau.model.Flavor;
 import telvape.mobilau.model.Job;
 
 public class SecondActivity extends BaseActivity {
