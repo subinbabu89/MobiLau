@@ -12,9 +12,9 @@ public class Flavor {
 
     @SerializedName("id")
     private int id;
-    @SerializedName("title")
+    @SerializedName("juice_name")
     private String title;
-    @SerializedName("description")
+    @SerializedName("type")
     private String description;
 
     private int percentage = 0;

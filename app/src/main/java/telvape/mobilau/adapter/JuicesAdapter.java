@@ -71,6 +71,7 @@ public class JuicesAdapter extends RecyclerView.Adapter<JuicesAdapter.ViewHolder
 
         void bind(Juice juice){
             this.juice = juice;
+            Log.d(TAG, "bind: Name "+juice.getName());
             txtv_label.setText(juice.getName());
             int flavorCount = juice.getFlavors().size();
             Log.d(TAG, "bind: value is " + (flavorCount<3?flavorCount:3));

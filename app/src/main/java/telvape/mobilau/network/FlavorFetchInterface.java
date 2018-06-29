@@ -17,7 +17,7 @@ import telvape.mobilau.model.Flavor;
 
 public interface FlavorFetchInterface {
 
-    @GET("flavors")
+    @GET("flavorjson")
     Call<List<Flavor>> getFlavors();
 
     class FlavorFetchAPI{
@@ -26,7 +26,8 @@ public interface FlavorFetchInterface {
         public static FlavorFetchInterface flavorFetchAPI(){
 
             if(flavorFetchInterface==null){
-                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://my-json-server.typicode.com/subinbabu89/dummy-rest-api/").addConverterFactory(GsonConverterFactory.create(new Gson())).build();
+//                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://my-json-server.typicode.com/subinbabu89/dummy-rest-api/").addConverterFactory(GsonConverterFactory.create(new Gson())).build();
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://vape-r-ware.us-west-1.elasticbeanstalk.com/").addConverterFactory(GsonConverterFactory.create(new Gson())).build();
                 flavorFetchInterface = retrofit.create(FlavorFetchInterface.class);
             }
             return flavorFetchInterface;

@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 public class Juice implements Parcelable{
-    @SerializedName("juices")
+    @SerializedName("name")
     private String name;
     @SerializedName("description")
     private String desc;
@@ -23,7 +23,7 @@ public class Juice implements Parcelable{
     private String rating;
     @SerializedName("pgvg_rating")
     private String pgvg;
-    @SerializedName("flavors")
+    @SerializedName("type")
     private String flavors;
     @SerializedName("nicotine")
     private String nicotine;
