@@ -34,6 +34,10 @@ public class Juice implements Parcelable{
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDesc() {
         return desc;
     }
@@ -100,4 +104,14 @@ public class Juice implements Parcelable{
             return new Juice[size];
         }
     };
+
+    public Juice(String name, String desc, String rating, String pgvg, String flavors, String nicotine, String ingredients) {
+        this.name = name;
+        this.desc = desc;
+        this.rating = rating;
+        this.pgvg = pgvg;
+        this.flavors = flavors;
+        this.nicotine = nicotine;
+        this.ingredients = ingredients;
+    }
 }

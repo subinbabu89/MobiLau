@@ -1,24 +1,31 @@
 package telvape.mobilau.view.flavors;
 
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import telvape.mobilau.R;
 import telvape.mobilau.adapter.AllFlavorAdapter;
 import telvape.mobilau.custom.IngredientItemDecoration;
 import telvape.mobilau.model.Flavor;
+import telvape.mobilau.model.Juice;
 import telvape.mobilau.presenter.CustomJuicePresenter;
 import telvape.mobilau.presenter.CustomJuicePresenterImpl;
 import telvape.mobilau.view.BaseFragment;
+import telvape.mobilau.view.ReviewFragment;
 import telvape.mobilau.view.flavors.bottomsheet.BottomSheetImpl;
 import telvape.mobilau.view.flavors.bottomsheet.BottomSheetView;
 
@@ -32,12 +39,15 @@ public class FlavorsFragment extends BaseFragment implements FlavorsView {
 
     CustomJuicePresenter customJuicePresenter;
 
-    List<Flavor> recipeFlavors;
+    ArrayList<Flavor> recipeFlavors;
 
     BottomSheetView bottomSheetView;
 
     @BindView(R.id.bottom_sheet)
     ConstraintLayout llBottomSheet;
+
+    @BindView(R.id.txtv_review)
+    TextView review;
 
     @Override
     public int initLayoutID() {
@@ -100,5 +110,23 @@ public class FlavorsFragment extends BaseFragment implements FlavorsView {
         }
     }
 
+    @OnClick(R.id.txtv_review)
+    void review(){
+//        StringBuilder stringBuilder = new StringBuilder();
+//
+//        for (Flavor flavor: flavors
+//             ) {
+//            stringBuilder.append(flavor.getTitle());
+//            stringBuilder.append(",");
+//        }
+//        String s = stringBuilder.toString();
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        Fragment fragment = new ReviewFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("juice",recipeFlavors);
+        fragment.setArguments(bundle);
+        ft.replace(R.id.container, fragment);
+        ft.commit();
+    }
 
 }

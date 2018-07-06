@@ -20,7 +20,7 @@ import telvape.mobilau.view.juice.JuicesView;
 
 public class JuicesPresenterImpl implements JuicesPresenter {
 
-    private static final String TAG = "JuicesPresenterImpl";
+    private static final String TAG = "JuicesPresenterJuiImpl";
 
     private JuicesView juicesView;
 
@@ -60,4 +60,6 @@ public class JuicesPresenterImpl implements JuicesPresenter {
 //        });
 
     }
+
+
 }
